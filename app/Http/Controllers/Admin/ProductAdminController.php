@@ -21,28 +21,48 @@ class ProductAdminController extends Controller
 
     public function store(Request $request)
     {
-        // Validation and store logic
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required|numeric',
+            'old_price' => 'numeric',
+            'discount' => 'integer',
+            'description' => 'required|string',
+        ]);
+        
+        $imageName = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('public/images', $imageName);
+
+        $product = Product::create([
+            'name'=> $validated['name'],
+            'image'=> $path,
+            'price'=> $validated['price'],
+            'old_price'=> $validated['old_price'] || null,
+            'discount'=> $validated['discount'] || null,
+            'description'=> $validated['description'],
+        ]);
+        
+        return $this->index();
     }
 
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
         return view('admin.products.show', compact('product'));
     }
 
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::findOrFail($id);
         return view('admin.products.edit', compact('product'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
         // Validation and update logic
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, Product $product)
     {
-        // Deletion logic
+        $product->delete();
+        return $this->index();
     }
 }

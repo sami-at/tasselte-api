@@ -12,8 +12,8 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/admin/products', [ProductAdminController::class, 'index'])->middleware('auth.admin')->name('admin.products.index');
 Route::get('/admin/products/create', [ProductAdminController::class, 'create'])->middleware('auth.admin')->name('admin.products.create');
-Route::post('/admin/products', [ProductAdminController::class, 'store'])->middleware('auth.admin');
-Route::get('/admin/products/{id}', [ProductAdminController::class, 'show'])->middleware('auth.admin');
-Route::get('/admin/products/{id}/edit', [ProductAdminController::class, 'edit'])->middleware('auth.admin')->name('admin.products.edit');
-Route::put('/admin/products/{id}', [ProductAdminController::class, 'update'])->middleware('auth.admin');
-Route::delete('/admin/products/{id}', [ProductAdminController::class, 'destroy'])->middleware('auth.admin');
+Route::post('/admin/products', [ProductAdminController::class, 'store'])->middleware('auth.admin')->name('admin.products.store');
+Route::get('/admin/products/{product}', [ProductAdminController::class, 'show'])->middleware('auth.admin');
+Route::get('/admin/products/{product}/edit', [ProductAdminController::class, 'edit'])->middleware('auth.admin')->name('admin.products.edit');
+Route::put('/admin/products/{product}', [ProductAdminController::class, 'update'])->middleware('auth.admin');
+Route::delete('/admin/products/{product}', [ProductAdminController::class, 'destroy'])->middleware('auth.admin')->name('admin.products.destroy');
