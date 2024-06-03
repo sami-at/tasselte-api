@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -30,5 +31,18 @@ class DatabaseSeeder extends Seeder
             "password"=> bcrypt("admin@2024."),
             "is_admin" => 1,
         ]);
+
+
+        for ($i = 1; $i <= 10; $i++) {
+            Product::create([
+                'name' => 'Product ' . $i,
+                'image' => 'https://via.placeholder.com/300x300/27ae60/000000', // Using the provided image URL
+                'price' => rand(10, 100), // Random price between 10 and 100
+                'old_price' => rand(5, 50), // Random old price between 5 and 50
+                'discount' => '10%', // Example discount
+                'description' => 'Description for Product ' . $i,
+            ]);
+
+        }
     }
 }

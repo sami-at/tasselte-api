@@ -37,8 +37,8 @@ class ProductAdminController extends Controller
             'name'=> $validated['name'],
             'image'=> $path,
             'price'=> $validated['price'],
-            'old_price'=> $validated['old_price'] || null,
-            'discount'=> $validated['discount'] || null,
+            'old_price'=> $validated['old_price'],
+            'discount'=> $validated['discount'],
             'description'=> $validated['description'],
         ]);
         
