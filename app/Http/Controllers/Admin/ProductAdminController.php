@@ -64,8 +64,40 @@ class ProductAdminController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        // Validation and update logic
+        // Validate the incoming request
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // adjust max file size as needed
+            'old_price' => 'nullable|numeric|min:0',
+            'discount' => 'nullable|numeric|min:0|max:100',
+        ]);
+        // Update product details
+        $product->name = $validatedData['name'];
+        $product->price = $validatedData['price'];
+        $product->description = $validatedData['description'];
+        
+        // Handle image upload if provided
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('product_images');
+            $product->image = $imagePath;
+        }
+        // Handle discount fields if applicable
+        if ($request->has('toggle_discount') && $request->input('toggle_discount')) {
+            $product->old_price = $validatedData['old_price'];
+            $product->discount = $validatedData['discount'];
+        } else {
+            $product->old_price = null;
+            $product->discount = null;
+        }
+        // Save the updated product
+        $product->save();
+
+        // Redirect back with success message
+        return $this->index();
     }
+    
 
     public function destroy(Request $request, Product $product)
     {

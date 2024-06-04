@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 'image' => 'https://via.placeholder.com/300x300/27ae60/000000', // Using the provided image URL
                 'price' => rand(10, 100), // Random price between 10 and 100
                 'old_price' => rand(5, 50), // Random old price between 5 and 50
-                'discount' => '10%', // Example discount
+                'discount' => rand(5, 50), // Example discount
                 'description' => 'Description for Product ' . $i,
             ]);
 
