@@ -97,13 +97,13 @@ class ProductAdminController extends Controller
         $product->save();
 
         // Redirect back with success message
-        return $this->index();
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
     
 
     public function destroy(Request $request, Product $product)
     {
         $product->delete();
-        return $this->index();
+        return redirect()->route('admin.products.index')->with('success', 'Product delete successfully.');
     }
 }
