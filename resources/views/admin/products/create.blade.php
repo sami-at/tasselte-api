@@ -17,19 +17,18 @@
         <div id="discount_fields" class="hidden">
             <div class="mb-5">
                 <label for="old_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Old Price:</label>
-                <input type="number" step="0.01" name="old_price" id="old_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Old Price" required />
+                <input type="number" step="0.01" name="old_price" id="old_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Old Price" />
             </div>
             <div class="mb-5">
                 <label for="discount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Discount:</label>
-                <input type="number" name="discount" id="discount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Discount" required />
+                <input type="number" name="discount" id="discount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Discount" />
             </div>
         </div>
         <div class="mb-5">
             <label for="toggle_discount" class="inline-flex items-center cursor-pointer">
-                <input type="checkbox" id="toggle_discount" class="sr-only peer">
+                <input type="checkbox" id="toggle_discount" name="toggle_discount" class="sr-only peer">
                 <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                 <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Discount</span>
-
             </label>
         </div>
         <div class="mb-5">
@@ -71,7 +70,4 @@
             discountInput.value = Math.round(discount); // Round the discount to the nearest integer
         }
     });
-
 </script>
-
-

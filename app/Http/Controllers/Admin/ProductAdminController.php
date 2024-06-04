@@ -20,30 +20,37 @@ class ProductAdminController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required|numeric',
-            'old_price' => 'numeric',
-            'discount' => 'integer',
-            'description' => 'required|string',
-        ]);
-        
-        $imageName = $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('public/images', $imageName);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'price' => 'required|numeric',
+        'description' => 'required|string',
+    ]);
 
-        $product = Product::create([
-            'name'=> $validated['name'],
-            'image'=> $path,
-            'price'=> $validated['price'],
-            'old_price'=> $validated['old_price'],
-            'discount'=> $validated['discount'],
-            'description'=> $validated['description'],
+    // Only validate old_price and discount if the discount toggle is on
+    if ($request->has('toggle_discount')) {
+        $request->validate([
+            'old_price' => 'required|numeric',
+            'discount' => 'required|integer',
         ]);
-        
-        return $this->index();
     }
+
+    $imageName = $request->file('image')->getClientOriginalName();
+    $path = $request->file('image')->storeAs('public/images', $imageName);
+
+    $product = Product::create([
+        'name' => $request->input('name'),
+        'image' => $path,
+        'price' => $request->input('price'),
+        'old_price' => $request->input('old_price'),
+        'discount' => $request->input('discount'),
+        'description' => $request->input('description'),
+    ]);
+
+    return $this->index();
+}
+
 
     public function show(Product $product)
     {
