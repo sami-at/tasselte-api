@@ -48,8 +48,10 @@ class ProductAdminController extends Controller
         'description' => $request->input('description'),
     ]);
 
-    return $this->index();
+    // Redirect to the index page with a success message
+    return redirect()->route('admin.products.index')->with('success', 'Product added successfully.');
 }
+
 
 
     public function show(Product $product)
