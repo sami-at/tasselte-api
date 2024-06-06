@@ -1,9 +1,10 @@
 <x-admin-layout>
     <!-- Add product button -->
-    <a href="{{ route('admin.products.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Product</a>
-    
+    <div class="mt-10">
+    <a href="{{ route('admin.products.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-20">Add Product</a>
+    </div>
     <!-- Product table -->
-    <table class="min-w-full divide-y divide-gray-200">
+    <table class="min-w-full divide-y divide-gray-200  mb-20">
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -27,11 +28,17 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->discount }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->description }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <a href="{{ route('admin.products.edit', $product->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                    <a href="{{ route('admin.products.edit', $product->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                    <a href="{{ route('admin.products.show', $product->id) }}" class="text-green-600 hover:text-green-900 mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block align-middle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 20a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5m5 0h4a1 1 0 011 1v4m0 5a1 1 0 01-1 1h-4m-5 0H6a1 1 0 01-1-1v-4m0-5a1 1 0 011-1h4" />
+                        </svg>
+                    </a>
                     <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete</button>
+                        <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
                     </form>
                 </td>
             </tr>
