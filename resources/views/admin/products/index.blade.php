@@ -28,7 +28,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->price }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->old_price }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $product->discount }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $product->description }}</td>
+                <td class="px-6 py-4 whitespace-nowrap description-cell">{{ $product->description }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <a href="{{ route('admin.products.edit', $product->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
                     <a href="{{ route('admin.products.show', $product->id) }}" class="text-green-600 hover:text-green-900 mr-2">
@@ -68,4 +68,13 @@
             }
         });
     </script>
+
+    <style>
+        .description-cell {
+            max-width: 150px; /* Adjust the width as needed */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 </x-admin-layout>
